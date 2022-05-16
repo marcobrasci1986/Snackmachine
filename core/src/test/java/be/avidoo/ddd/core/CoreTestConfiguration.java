@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
  * https://localcoder.org/how-to-test-maven-module-project-with-spring-boot
  */
 @TestConfiguration
-@EnableJpaRepositories(basePackages = {"be.avidoo.ddd.core.repositories"})
+@EnableJpaRepositories(basePackages = {"be.avidoo.ddd.core.aggregate"})
 @EntityScan(basePackages = {"be.avidoo.ddd.core.aggregate"})
 @EnableAutoConfiguration
 public class CoreTestConfiguration {

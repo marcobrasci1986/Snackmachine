@@ -1,7 +1,9 @@
 package be.avidoo.ddd.core.aggregate;
 
 import be.avidoo.ddd.core.AbstractEntity;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.Transient;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 public class SnackMachine extends AbstractEntity {
 
@@ -17,8 +20,6 @@ public class SnackMachine extends AbstractEntity {
     @Transient
     private Money moneyInTransaction = MoneyFactory.NONE;
 
-    public SnackMachine() {
-    }
 
     public SnackMachine(long id) {
         super(id);

@@ -1,4 +1,4 @@
-package be.avidoo.ddd.core.repositories;
+package be.avidoo.ddd.core.aggregate;
 
 import be.avidoo.ddd.core.aggregate.SnackMachine;
 import org.springframework.data.jpa.repository.JpaRepository;
