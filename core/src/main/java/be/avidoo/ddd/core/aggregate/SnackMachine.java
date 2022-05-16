@@ -1,9 +1,7 @@
 package be.avidoo.ddd.core.aggregate;
 
 import be.avidoo.ddd.core.AbstractEntity;
-import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
