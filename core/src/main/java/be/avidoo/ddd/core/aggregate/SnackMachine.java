@@ -11,7 +11,6 @@ import javax.persistence.Transient;
 import java.util.List;
 
 @Entity
-
 @Getter
 public class SnackMachine extends AbstractEntity {
 
