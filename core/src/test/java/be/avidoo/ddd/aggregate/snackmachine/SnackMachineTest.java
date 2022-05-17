@@ -12,7 +12,7 @@ class SnackMachineTest {
 
     @Test
     void returnMoneyEmptiesMoneyInTransaction() {
-        SnackMachine snackMachine = new SnackMachine(1L);
+        SnackMachine snackMachine = new SnackMachine();
         snackMachine.insertMoney(MoneyFactory.ONE_EURO);
 
         snackMachine.returnMoney();
@@ -22,7 +22,7 @@ class SnackMachineTest {
 
     @Test
     void insertedMoneyGoesToMoneyInTransaction() {
-        SnackMachine snackMachine = new SnackMachine(1L);
+        SnackMachine snackMachine = new SnackMachine();
         snackMachine.insertMoney(MoneyFactory.FIFTY_CENT);
         snackMachine.insertMoney(MoneyFactory.ONE_EURO);
 
@@ -31,7 +31,7 @@ class SnackMachineTest {
 
     @Test
     void cannotInsertMoreThanOneCoinOrBillAtATime() {
-        SnackMachine snackMachine = new SnackMachine(1L);
+        SnackMachine snackMachine = new SnackMachine();
 
         IllegalArgumentException ex = Assertions.assertThrows(IllegalArgumentException.class, () -> {
             snackMachine.insertMoney(new Money(1, 1, 0, 0, 0));
@@ -42,7 +42,9 @@ class SnackMachineTest {
 
     @Test
     void buySnack() {
-        SnackMachine snackMachine = new SnackMachine(1L);
+        SnackMachine snackMachine = new SnackMachine();
+//        snackMachine.loadSnack();
+
         snackMachine.insertMoney(MoneyFactory.ONE_EURO);
         snackMachine.insertMoney(MoneyFactory.ONE_EURO);
 

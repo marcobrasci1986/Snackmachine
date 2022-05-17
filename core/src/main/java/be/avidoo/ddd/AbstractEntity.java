@@ -20,7 +20,4 @@ public abstract class AbstractEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public AbstractEntity(Long id) {
-        this.id = id;
-    }
 }

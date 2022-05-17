@@ -17,23 +17,22 @@ class SnackMachineRepositoryTest {
 
     @Test
     void findById() {
-        SnackMachine snackMachine = new SnackMachine(1L);
+        SnackMachine snackMachine = new SnackMachine();
 
         SnackMachine savedSnackMachine = snackMachineRepository.save(snackMachine);
 
-        assertThat(savedSnackMachine.getId()).isEqualTo(1L);
+        assertThat(savedSnackMachine.getId()).isNotNull();
     }
 
     @Test
     void insertMoneyAndBuySnack() {
-        SnackMachine snackMachine = new SnackMachine(1L);
+        SnackMachine snackMachine = new SnackMachine();
         snackMachine.insertMoney(MoneyFactory.ONE_EURO);
         snackMachine.insertMoney(MoneyFactory.FIFTY_CENT);
         snackMachine.buySnack();
 
         SnackMachine savedSnackMachine = snackMachineRepository.save(snackMachine);
 
-        assertThat(savedSnackMachine.getId()).isEqualTo(1L);
         assertThat(savedSnackMachine.getMoneyInside().amount()).isEqualTo(1.5);
     }
 }
