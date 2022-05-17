@@ -1,8 +1,6 @@
 package be.avidoo.ddd.aggregate.snackmachine;
 
-import be.avidoo.ddd.aggregate.snackmachine.Money;
-import be.avidoo.ddd.aggregate.snackmachine.MoneyFactory;
-import be.avidoo.ddd.aggregate.snackmachine.SnackMachine;
+import be.avidoo.ddd.aggregate.snack.Snack;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -43,18 +41,38 @@ class SnackMachineTest {
     @Test
     void buySnack() {
         SnackMachine snackMachine = new SnackMachine();
-//        snackMachine.loadSnack();
-
-        snackMachine.insertMoney(MoneyFactory.ONE_EURO);
+        snackMachine.loadSnack(1, new SnackPile(new Snack("Some Snack"), 10, 1));
         snackMachine.insertMoney(MoneyFactory.ONE_EURO);
 
-        snackMachine.buySnack();
+        snackMachine.buySnack(1);
 
         assertThat(snackMachine.getMoneyInside()).isEqualTo(
-                new Money(0, 2, 0, 0, 0)
+                new Money(0, 1, 0, 0, 0)
         );
         assertThat(snackMachine.getMoneyInTransaction()).isEqualTo(
                 MoneyFactory.NONE
         );
+        assertThat(snackMachine.getSnackPile(1).getQuantity()).isEqualTo(9);
+    }
+
+    @Test
+    void cannotBuySnackWhenNoSnacksAreLoaded() {
+        SnackMachine snackMachine = new SnackMachine();
+        snackMachine.insertMoney(MoneyFactory.ONE_EURO);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            snackMachine.buySnack(1);
+        });
+    }
+
+    @Test
+    void cannotBuySnackWhenNotEnoughMoneyInserted() {
+        SnackMachine snackMachine = new SnackMachine();
+        snackMachine.loadSnack(1, new SnackPile(new Snack("Some Snack"), 10, 2));
+        snackMachine.insertMoney(MoneyFactory.ONE_EURO);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            snackMachine.buySnack(1);
+        });
     }
 }

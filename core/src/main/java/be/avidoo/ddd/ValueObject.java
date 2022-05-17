@@ -1,7 +1,6 @@
 package be.avidoo.ddd;
 
 public abstract class ValueObject {
-
     @Override
     public abstract int hashCode();
 
