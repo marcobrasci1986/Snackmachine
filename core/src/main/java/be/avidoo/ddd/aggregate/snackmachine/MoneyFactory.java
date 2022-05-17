@@ -1,4 +1,4 @@
-package be.avidoo.ddd.aggregate;
+package be.avidoo.ddd.aggregate.snackmachine;
 
 public class MoneyFactory {
 

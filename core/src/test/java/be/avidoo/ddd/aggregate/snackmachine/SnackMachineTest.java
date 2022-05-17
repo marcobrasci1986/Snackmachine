@@ -1,5 +1,8 @@
-package be.avidoo.ddd.aggregate;
+package be.avidoo.ddd.aggregate.snackmachine;
 
+import be.avidoo.ddd.aggregate.snackmachine.Money;
+import be.avidoo.ddd.aggregate.snackmachine.MoneyFactory;
+import be.avidoo.ddd.aggregate.snackmachine.SnackMachine;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

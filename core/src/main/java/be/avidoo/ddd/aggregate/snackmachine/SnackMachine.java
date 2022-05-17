@@ -1,4 +1,4 @@
-package be.avidoo.ddd.aggregate;
+package be.avidoo.ddd.aggregate.snackmachine;
 
 import be.avidoo.ddd.AbstractEntity;
 import lombok.AccessLevel;
