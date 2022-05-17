@@ -1,6 +1,6 @@
-package be.avidoo.ddd.core.aggregate;
+package be.avidoo.ddd.aggregate;
 
-import be.avidoo.ddd.core.AbstractEntity;
+import be.avidoo.ddd.AbstractEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

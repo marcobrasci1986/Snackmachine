@@ -1,6 +1,5 @@
-package be.avidoo.ddd.core.aggregate;
+package be.avidoo.ddd.aggregate;
 
-import be.avidoo.ddd.core.aggregate.SnackMachine;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

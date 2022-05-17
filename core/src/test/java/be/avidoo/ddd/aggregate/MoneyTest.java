@@ -1,4 +1,4 @@
-package be.avidoo.ddd.core.aggregate;
+package be.avidoo.ddd.aggregate;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

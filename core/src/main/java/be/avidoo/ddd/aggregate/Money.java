@@ -1,6 +1,6 @@
-package be.avidoo.ddd.core.aggregate;
+package be.avidoo.ddd.aggregate;
 
-import be.avidoo.ddd.core.ValueObject;
+import be.avidoo.ddd.ValueObject;
 import lombok.*;
 
 import javax.persistence.Embeddable;

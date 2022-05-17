@@ -1,9 +1,5 @@
-package be.avidoo.ddd.core.aggregate;
+package be.avidoo.ddd.aggregate;
 
-import be.avidoo.ddd.core.CoreTestConfiguration;
-import be.avidoo.ddd.core.aggregate.MoneyFactory;
-import be.avidoo.ddd.core.aggregate.SnackMachine;
-import be.avidoo.ddd.core.aggregate.SnackMachineRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

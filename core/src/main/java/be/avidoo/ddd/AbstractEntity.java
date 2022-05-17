@@ -1,4 +1,4 @@
-package be.avidoo.ddd.core;
+package be.avidoo.ddd;
 
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
