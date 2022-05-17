@@ -65,4 +65,22 @@ class Money extends ValueObject {
                 this.tenEuroBill - money.getTenEuroBill()
         );
     }
+
+    public Money allocate(double amount) {
+        int tenEuroCount = (int) Math.min((amount / 10), this.tenEuroBill);
+        amount = amount - tenEuroCount * 10;
+
+        int fiveEuroCount = (int) Math.min((amount / 5), this.fiveEuroBill);
+        amount = amount - fiveEuroCount * 5;
+
+        int twoEuroCount = (int) Math.min((amount / 2), this.twoEuroCoin);
+        amount = amount - twoEuroCount * 2;
+
+        int oneEuroCount = (int) Math.min(amount, this.oneEuroCoin);
+        amount = amount - oneEuroCount;
+
+        int fiftyCentCount = (int) Math.min((amount / 0.5), this.fiftyCentCoin);
+
+        return new Money(fiftyCentCount, oneEuroCount, twoEuroCount, fiveEuroCount, tenEuroCount);
+    }
 }

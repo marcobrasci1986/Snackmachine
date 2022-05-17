@@ -15,7 +15,7 @@ class SnackMachineTest {
 
         snackMachine.returnMoney();
 
-        assertThat((snackMachine.getMoneyInTransaction().amount())).isEqualTo(0);
+        assertThat((snackMachine.getMoneyInTransaction())).isEqualTo(0);
     }
 
     @Test
@@ -24,7 +24,7 @@ class SnackMachineTest {
         snackMachine.insertMoney(MoneyFactory.FIFTY_CENT);
         snackMachine.insertMoney(MoneyFactory.ONE_EURO);
 
-        assertThat((snackMachine.getMoneyInTransaction().amount())).isEqualTo(1.5);
+        assertThat((snackMachine.getMoneyInTransaction())).isEqualTo(1.5);
     }
 
     @Test
@@ -50,7 +50,7 @@ class SnackMachineTest {
                 new Money(0, 1, 0, 0, 0)
         );
         assertThat(snackMachine.getMoneyInTransaction()).isEqualTo(
-                MoneyFactory.NONE
+                0
         );
         assertThat(snackMachine.getSnackPile(1).getQuantity()).isEqualTo(9);
     }
@@ -69,6 +69,44 @@ class SnackMachineTest {
     void cannotBuySnackWhenNotEnoughMoneyInserted() {
         SnackMachine snackMachine = new SnackMachine();
         snackMachine.loadSnack(1, new SnackPile(new Snack("Some Snack"), 10, 2));
+        snackMachine.insertMoney(MoneyFactory.ONE_EURO);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            snackMachine.buySnack(1);
+        });
+    }
+
+    @Test
+    void returnMoneyWithHighestDenominationFirst() {
+        SnackMachine snackMachine = new SnackMachine();
+        snackMachine.loadMoney(MoneyFactory.ONE_EURO);
+
+        snackMachine.insertMoney(MoneyFactory.FIFTY_CENT);
+        snackMachine.insertMoney(MoneyFactory.FIFTY_CENT);
+
+        snackMachine.returnMoney();
+
+        assertThat(snackMachine.getMoneyInside().getFiftyCentCoin()).isEqualTo(2);
+        assertThat(snackMachine.getMoneyInside().getOneEuroCoin()).isEqualTo(0);
+    }
+
+    @Test
+    void returnChangeAfterPurchaseIsCompleted() {
+        SnackMachine snackMachine = new SnackMachine();
+        snackMachine.loadSnack(1, new SnackPile(new Snack("Some Snack"), 1, 0.5));
+        snackMachine.loadMoney(new Money(2, 0, 0, 0, 0));
+
+        snackMachine.insertMoney(MoneyFactory.ONE_EURO);
+        snackMachine.buySnack(1);
+
+        assertThat(snackMachine.getMoneyInside()).isEqualTo(new Money(1, 1, 0, 0, 0));
+        assertThat(snackMachine.getMoneyInTransaction()).isEqualTo(0);
+    }
+
+    @Test
+    void cannotBuySnackIfNotEnoughChange() {
+        SnackMachine snackMachine = new SnackMachine();
+        snackMachine.loadSnack(1, new SnackPile(new Snack("Some Snack"), 1, 0.5));
         snackMachine.insertMoney(MoneyFactory.ONE_EURO);
 
         Assertions.assertThrows(IllegalArgumentException.class, () -> {

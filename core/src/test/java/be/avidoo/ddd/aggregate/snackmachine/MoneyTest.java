@@ -1,6 +1,5 @@
 package be.avidoo.ddd.aggregate.snackmachine;
 
-import be.avidoo.ddd.aggregate.snackmachine.Money;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -98,5 +97,71 @@ class MoneyTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
             money1.subtract(money2);
         });
+    }
+
+    @Test
+    void allocateMoneyInFiftyCents() {
+        Money moneyInside = new Money(2, 0, 0, 0, 0);
+
+        Money moneyToReturn = moneyInside.allocate(1);
+
+        assertThat(moneyToReturn).isEqualTo(
+                new Money(2, 0, 0, 0, 0)
+        );
+    }
+
+    @Test
+    void allocateMoneyInOneEuros() {
+        Money moneyInside = new Money(2, 1, 0, 0, 0);
+
+        Money moneyToReturn = moneyInside.allocate(1);
+
+        assertThat(moneyToReturn).isEqualTo(
+                new Money(0, 1, 0, 0, 0)
+        );
+    }
+
+    @Test
+    void allocateMoneyInTwoEuros() {
+        Money moneyInside = new Money(2, 2, 1, 0, 0);
+
+        Money moneyToReturn = moneyInside.allocate(2.5);
+
+        assertThat(moneyToReturn).isEqualTo(
+                new Money(1, 0, 1, 0, 0)
+        );
+    }
+
+    @Test
+    void allocateMoneyInFiveEuros() {
+        Money moneyInside = new Money(2, 2, 2, 1, 0);
+
+        Money moneyToReturn = moneyInside.allocate(6.5);
+
+        assertThat(moneyToReturn).isEqualTo(
+                new Money(1, 1, 0, 1, 0)
+        );
+    }
+
+    @Test
+    void allocateMoneyInTenEuros() {
+        Money moneyInside = new Money(2, 10, 5, 2, 1);
+
+        Money moneyToReturn = moneyInside.allocate(11.5);
+
+        assertThat(moneyToReturn).isEqualTo(
+                new Money(1, 1, 0, 0, 1)
+        );
+    }
+
+    @Test
+    void allocateMoneyNotPossible() {
+        Money moneyInside = new Money(0, 0, 0, 0, 0);
+
+        Money moneyToReturn = moneyInside.allocate(1);
+
+        assertThat(moneyToReturn).isEqualTo(
+                new Money(0, 0, 0, 0, 0)
+        );
     }
 }

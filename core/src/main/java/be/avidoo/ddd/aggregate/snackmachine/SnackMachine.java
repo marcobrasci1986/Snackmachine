@@ -14,13 +14,13 @@ public class SnackMachine extends AbstractAggregateRoot {
     @Embedded
     private Money moneyInside;
     @Transient
-    private Money moneyInTransaction;
+    private double moneyInTransaction;
     @OneToMany(cascade = CascadeType.ALL)
     private List<Slot> slots;
 
     public SnackMachine() {
         this.moneyInside = MoneyFactory.NONE;
-        this.moneyInTransaction = MoneyFactory.NONE;
+        this.moneyInTransaction = 0;
         this.slots = List.of(
                 new Slot(this, 1),
                 new Slot(this, 2),
@@ -40,22 +40,31 @@ public class SnackMachine extends AbstractAggregateRoot {
         if (!possibleValues.contains(money)) {
             throw new IllegalArgumentException("Cannot insert more than 1 coin or bill at a time. Possibilities are: " + possibleValues);
         }
-        this.moneyInTransaction = this.moneyInTransaction.sum(money);
+        this.moneyInTransaction = this.moneyInTransaction + money.amount();
+        this.moneyInside = this.moneyInside.sum(money);
     }
 
     public void returnMoney() {
-        this.moneyInTransaction = MoneyFactory.NONE;
+        Money moneyToReturn = this.moneyInside.allocate(this.moneyInTransaction);
+        this.moneyInside = this.moneyInside.subtract(moneyToReturn);
+        this.moneyInTransaction = 0;
     }
 
     public void buySnack(int position) {
         Slot slot = findSlot(position);
-        if (slot.getSnackPile().getPrice() > this.moneyInTransaction.amount()) {
+        if (slot.getSnackPile().getPrice() > this.moneyInTransaction) {
             throw new IllegalArgumentException("Not enough money inserted");
         }
 
         slot.setSnackPile(slot.getSnackPile().subtractOne());
-        this.moneyInside = this.moneyInside.sum(this.moneyInTransaction);
-        this.moneyInTransaction = MoneyFactory.NONE;
+
+        Money change = this.moneyInside.allocate(moneyInTransaction - slot.getSnackPile().getPrice());
+        if (change.amount() < this.moneyInTransaction - slot.getSnackPile().getPrice()) {
+            throw new IllegalArgumentException("Cannot return adequate amount of money. Transaction aborted");
+
+        }
+        this.moneyInside = this.moneyInside.subtract(change);
+        this.moneyInTransaction = 0;
     }
 
 
@@ -67,5 +76,9 @@ public class SnackMachine extends AbstractAggregateRoot {
     private Slot findSlot(int position) {
         Optional<Slot> first = slots.stream().filter(slot -> slot.getPosition() == position).findFirst();
         return first.orElseThrow(() -> new RuntimeException("No slot found for position: " + position));
+    }
+
+    public void loadMoney(Money money) {
+        this.moneyInside = this.moneyInside.sum(money);
     }
 }
