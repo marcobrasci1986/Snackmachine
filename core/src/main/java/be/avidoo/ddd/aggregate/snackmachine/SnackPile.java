@@ -7,13 +7,20 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+
+@Embeddable
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EqualsAndHashCode(callSuper = false)
 class SnackPile extends ValueObject {
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_snack")
     private Snack snack;
+    @Column(name = "quantity")
     private int quantity;
+    @Column(name = "price")
     private double price;
 
     public SnackPile(Snack snack, int quantity, double price) {

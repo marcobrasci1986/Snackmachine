@@ -4,6 +4,7 @@ import be.avidoo.ddd.AbstractAggregateRoot;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,17 +16,22 @@ public class SnackMachine extends AbstractAggregateRoot {
     private Money moneyInside;
     @Transient
     private double moneyInTransaction;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Slot> slots;
+
+    public SnackMachine(long id) {
+        this();
+        this.id = id;
+    }
 
     public SnackMachine() {
         this.moneyInside = MoneyFactory.NONE;
         this.moneyInTransaction = 0;
-        this.slots = List.of(
-                new Slot(this, 1),
-                new Slot(this, 2),
-                new Slot(this, 3)
-        );
+        this.slots = new ArrayList<>();
+
+        this.slots.add(new Slot(this, 1));
+        this.slots.add(new Slot(this, 2));
+        this.slots.add(new Slot(this, 3));
     }
 
     public SnackPile getSnackPile(int position) {
