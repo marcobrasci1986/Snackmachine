@@ -5,10 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -17,7 +14,7 @@ class Slot extends AbstractEntity {
 
     @Embedded
     private SnackPile snackPile;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "fk_snackmachine")
     private SnackMachine snackMachine;
     private int position;

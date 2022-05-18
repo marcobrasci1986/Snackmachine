@@ -1,4 +1,4 @@
-package be.avidoo.ddd.aggregate.snackmachine;
+package be.avidoo.ddd.aggregate.snack;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -10,9 +10,9 @@ import org.springframework.test.context.TestPropertySource;
  * https://localcoder.org/how-to-test-maven-module-project-with-spring-boot
  */
 @TestConfiguration
-@EnableJpaRepositories(basePackages = {"be.avidoo.ddd.aggregate"})
-@EntityScan(basePackages = {"be.avidoo.ddd.aggregate"})
+@EnableJpaRepositories(basePackages = {"be.avidoo.ddd.aggregate.snack"})
+@EntityScan(basePackages = {"be.avidoo.ddd.aggregate.snack"})
 @EnableAutoConfiguration
 @TestPropertySource(properties = {"logging.level.root=WARN"})
-class SnackMachineTestConfiguration {
+class SnackTestConfiguration {
 }

@@ -29,7 +29,6 @@ public class SnackMachine extends AbstractAggregateRoot {
         this.moneyInTransaction = 0;
         this.slots = new ArrayList<>();
 
-        // TODO
         this.slots.add(new Slot(this, 1));
         this.slots.add(new Slot(this, 2));
         this.slots.add(new Slot(this, 3));
