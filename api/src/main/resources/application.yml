@@ -4,6 +4,10 @@ server:
   netty:
     h2c-max-content-length:
 
+logging:
+  level:
+    root: WARN
+
 spring:
   datasource:
     url: jdbc:h2:mem:mydb

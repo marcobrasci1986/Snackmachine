@@ -15,6 +15,7 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = false)
 class SnackPile extends ValueObject {
 
+    public static SnackPile EMPTY = new SnackPile(Snack.NONE, 0, 0);
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_snack")
     private Snack snack;

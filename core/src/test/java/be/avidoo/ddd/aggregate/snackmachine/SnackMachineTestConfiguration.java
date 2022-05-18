@@ -13,6 +13,6 @@ import org.springframework.test.context.TestPropertySource;
 @EnableJpaRepositories(basePackages = {"be.avidoo.ddd.aggregate"})
 @EntityScan(basePackages = {"be.avidoo.ddd.aggregate"})
 @EnableAutoConfiguration
-@TestPropertySource(locations = "classpath:test.yml")
+@TestPropertySource(properties = {"logging.level.root=WARN"})
 public class SnackMachineTestConfiguration {
 }

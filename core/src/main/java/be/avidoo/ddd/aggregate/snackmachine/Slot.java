@@ -1,7 +1,6 @@
 package be.avidoo.ddd.aggregate.snackmachine;
 
 import be.avidoo.ddd.AbstractEntity;
-import be.avidoo.ddd.aggregate.snack.Snack;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +25,7 @@ class Slot extends AbstractEntity {
     public Slot(SnackMachine snackMachine, int position) {
         this.snackMachine = snackMachine;
         this.position = position;
-        this.snackPile = new SnackPile(Snack.NONE, 0, 0);
+        this.snackPile = SnackPile.EMPTY;
     }
 
     public void setSnackPile(SnackPile snackPile) {
