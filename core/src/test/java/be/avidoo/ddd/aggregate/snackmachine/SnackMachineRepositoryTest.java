@@ -61,8 +61,8 @@ class SnackMachineRepositoryTest {
 
         optionalSnackMachine.ifPresent(snackMachine -> {
             snackMachine.loadMoney(new Money(1, 0, 0, 0, 0));
-            snackMachine.insertMoney(MoneyFactory.ONE_EURO);
-            snackMachine.insertMoney(MoneyFactory.ONE_EURO);
+            snackMachine.insertMoney(Money.ONE_EURO);
+            snackMachine.insertMoney(Money.ONE_EURO);
 
             snackMachine.buySnack(1);
 

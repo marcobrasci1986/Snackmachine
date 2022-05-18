@@ -25,7 +25,7 @@ public class SnackMachine extends AbstractAggregateRoot {
     }
 
     public SnackMachine() {
-        this.moneyInside = MoneyFactory.NONE;
+        this.moneyInside = Money.NONE;
         this.moneyInTransaction = 0;
         this.slots = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class SnackMachine extends AbstractAggregateRoot {
 
 
     public void insertMoney(Money money) {
-        List<Money> possibleValues = List.of(MoneyFactory.FIFTY_CENT, MoneyFactory.ONE_EURO, MoneyFactory.TWO_EURO, MoneyFactory.FIVE_EURO, MoneyFactory.TEN_EURO);
+        List<Money> possibleValues = List.of(Money.FIFTY_CENT, Money.ONE_EURO, Money.TWO_EURO, Money.FIVE_EURO, Money.TEN_EURO);
 
         if (!possibleValues.contains(money)) {
             throw new IllegalArgumentException("Cannot insert more than 1 coin or bill at a time. Possibilities are: " + possibleValues);
