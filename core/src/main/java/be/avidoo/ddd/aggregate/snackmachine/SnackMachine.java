@@ -1,6 +1,7 @@
 package be.avidoo.ddd.aggregate.snackmachine;
 
 import be.avidoo.ddd.AbstractAggregateRoot;
+import be.avidoo.ddd.aggregate.Aggregate;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Optional;
 
 @Entity
 @Getter
+@Aggregate
 public class SnackMachine extends AbstractAggregateRoot {
 
     @Embedded

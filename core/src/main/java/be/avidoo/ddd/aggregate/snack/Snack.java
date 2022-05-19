@@ -1,6 +1,7 @@
 package be.avidoo.ddd.aggregate.snack;
 
 import be.avidoo.ddd.AbstractAggregateRoot;
+import be.avidoo.ddd.aggregate.Aggregate;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import javax.persistence.Entity;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Aggregate
 public class Snack extends AbstractAggregateRoot {
     public static final Snack NONE = new Snack(0, "None");
     public static final Snack CHOCOLATE = new Snack(1, "Chocolate");
