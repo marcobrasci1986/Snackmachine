@@ -158,10 +158,12 @@ class MoneyTest {
     void allocateMoneyNotPossible() {
         Money moneyInside = new Money(0, 0, 0, 0, 0);
 
-        Money moneyToReturn = moneyInside.allocate(1);
 
-        assertThat(moneyToReturn).isEqualTo(
-                new Money(0, 0, 0, 0, 0)
-        );
+        IllegalStateException ex = Assertions.assertThrows(IllegalStateException.class, () -> {
+            moneyInside.allocate(1);
+        });
+
+        assertThat(ex.getMessage()).isEqualTo("Cannot allocate change");
+
     }
 }

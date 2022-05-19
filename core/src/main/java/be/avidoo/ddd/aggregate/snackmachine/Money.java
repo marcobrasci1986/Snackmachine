@@ -73,7 +73,21 @@ class Money extends ValueObject {
         );
     }
 
+    public boolean canAllocate(double amount) {
+        Money money = this.allocateCore(amount);
+
+        return money.amount() == amount;
+    }
+
     public Money allocate(double amount) {
+        if (!canAllocate(amount)) {
+            throw new IllegalStateException("Cannot allocate change");
+        }
+
+        return this.allocateCore(amount);
+    }
+
+    private Money allocateCore(double amount) {
         int tenEuroCount = (int) Math.min((amount / 10), this.tenEuroBill);
         amount = amount - tenEuroCount * 10;
 
@@ -90,4 +104,6 @@ class Money extends ValueObject {
 
         return new Money(fiftyCentCount, oneEuroCount, twoEuroCount, fiveEuroCount, tenEuroCount);
     }
+
+
 }

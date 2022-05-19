@@ -58,6 +58,19 @@ public class SnackMachine extends AbstractAggregateRoot {
         this.moneyInTransaction = 0;
     }
 
+    public boolean canBuySnack(int position) {
+        SnackPile snackPile = getSnackPile(position);
+
+        if (snackPile.getQuantity() == 0)
+            throw new IllegalStateException("Quantity is zero");
+        if (this.moneyInTransaction < snackPile.getPrice())
+            throw new IllegalStateException("Not enough money inserted");
+        if(! moneyInside.canAllocate(this.moneyInTransaction - snackPile.getPrice()))
+            throw new IllegalStateException("Not enough money in machine for change");
+
+        return true;
+    }
+
     public void buySnack(int position) {
         Slot slot = findSlot(position);
         if (slot.getSnackPile().getPrice() > this.moneyInTransaction) {

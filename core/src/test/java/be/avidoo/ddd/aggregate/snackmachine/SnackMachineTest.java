@@ -109,7 +109,7 @@ class SnackMachineTest {
         snackMachine.loadSnack(1, new SnackPile(Snack.CHOCOLATE, 1, 0.5));
         snackMachine.insertMoney(Money.ONE_EURO);
 
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+        Assertions.assertThrows(IllegalStateException.class, () -> {
             snackMachine.buySnack(1);
         });
     }
