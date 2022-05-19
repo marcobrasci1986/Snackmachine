@@ -15,6 +15,5 @@ import org.springframework.test.context.TestPropertySource;
 @EnableJpaRepositories(basePackages = {"be.avidoo.ddd.aggregate.snack"})
 @EntityScan(basePackages = {"be.avidoo.ddd.aggregate.snack"})
 @Import({DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-@TestPropertySource(properties = {"logging.level.root=WARN"})
 class SnackTestConfiguration {
 }

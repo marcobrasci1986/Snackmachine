@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = SnackTestConfiguration.class)
+//@TestPropertySource(properties = "logging.level.root=WARN")
 class SnackRepositoryTest {
 
     @Autowired
