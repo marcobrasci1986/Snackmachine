@@ -6,7 +6,7 @@ server:
 
 logging:
   level:
-    root: WARN
+    root: INFO
 
 spring:
   datasource:
@@ -23,4 +23,4 @@ spring:
     console:
       enabled: true
 
-name: Snackmachine
+name: Snackmachine Test
