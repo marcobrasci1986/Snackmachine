@@ -17,3 +17,7 @@ INSERT INTO Slot (id, quantity, price, position, fk_snackmachine, fk_snack)
 VALUES (3, 10, 3.5, 3, 1, 3);
 
 
+INSERT INTO Atm (id, moneyCharged, fiftyCentCoin, oneEuroCoin, twoEuroCoin, fiveEuroBill, tenEuroBill)
+VALUES (1, 0, 1, 1, 1, 1, 1);
+
+

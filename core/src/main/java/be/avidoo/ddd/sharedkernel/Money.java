@@ -3,6 +3,7 @@ package be.avidoo.ddd.sharedkernel;
 import be.avidoo.ddd.common.ValueObject;
 import lombok.*;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
@@ -19,10 +20,15 @@ public class Money extends ValueObject {
     public static Money FIVE_EURO = new Money(0, 0, 0, 1, 0);
     public static Money TEN_EURO = new Money(0, 0, 0, 0, 1);
 
+    @Column(name = "fiftyCentCoin")
     private int fiftyCentCoin;
+    @Column(name = "oneEuroCoin")
     private int oneEuroCoin;
+    @Column(name = "twoEuroCoin")
     private int twoEuroCoin;
+    @Column(name = "fiveEuroBill")
     private int fiveEuroBill;
+    @Column(name = "tenEuroBill")
     private int tenEuroBill;
 
     @Builder
