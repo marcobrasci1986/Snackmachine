@@ -1,7 +1,7 @@
-package be.avidoo.ddd.aggregate.snackmachine;
+package be.avidoo.ddd.boundedcontext.snackmachine.snackmachine;
 
-import be.avidoo.ddd.ValueObject;
-import be.avidoo.ddd.aggregate.snack.Snack;
+import be.avidoo.ddd.common.ValueObject;
+import be.avidoo.ddd.boundedcontext.snackmachine.snack.Snack;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

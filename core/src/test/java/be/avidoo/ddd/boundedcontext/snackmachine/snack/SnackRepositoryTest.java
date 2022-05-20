@@ -1,4 +1,4 @@
-package be.avidoo.ddd.aggregate.snack;
+package be.avidoo.ddd.boundedcontext.snackmachine.snack;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +12,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = SnackTestConfiguration.class)
-//@TestPropertySource(properties = "logging.level.root=WARN")
 class SnackRepositoryTest {
 
     @Autowired

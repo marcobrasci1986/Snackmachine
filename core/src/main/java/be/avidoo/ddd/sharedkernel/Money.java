@@ -1,6 +1,6 @@
-package be.avidoo.ddd.aggregate.snackmachine;
+package be.avidoo.ddd.sharedkernel;
 
-import be.avidoo.ddd.ValueObject;
+import be.avidoo.ddd.common.ValueObject;
 import lombok.*;
 
 import javax.persistence.Embeddable;
@@ -10,7 +10,7 @@ import javax.persistence.Embeddable;
 @Getter
 @EqualsAndHashCode(callSuper = false)
 @ToString
-class Money extends ValueObject {
+public class Money extends ValueObject {
 
     public static Money NONE = new Money(0, 0, 0, 0, 0);
     public static Money FIFTY_CENT = new Money(1, 0, 0, 0, 0);

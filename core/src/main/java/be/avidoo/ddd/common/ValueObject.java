@@ -1,4 +1,4 @@
-package be.avidoo.ddd;
+package be.avidoo.ddd.common;
 
 public abstract class ValueObject {
     @Override

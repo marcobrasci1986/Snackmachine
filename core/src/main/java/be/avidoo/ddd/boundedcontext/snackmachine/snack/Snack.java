@@ -1,7 +1,7 @@
-package be.avidoo.ddd.aggregate.snack;
+package be.avidoo.ddd.boundedcontext.snackmachine.snack;
 
-import be.avidoo.ddd.AbstractAggregateRoot;
-import be.avidoo.ddd.aggregate.Aggregate;
+import be.avidoo.ddd.common.AbstractAggregateRoot;
+import be.avidoo.ddd.common.Aggregate;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

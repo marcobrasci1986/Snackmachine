@@ -1,7 +1,8 @@
-package be.avidoo.ddd.aggregate.snackmachine;
+package be.avidoo.ddd.boundedcontext.snackmachine.snackmachine;
 
-import be.avidoo.ddd.aggregate.snack.Snack;
-import be.avidoo.ddd.aggregate.snack.SnackRepository;
+import be.avidoo.ddd.boundedcontext.snackmachine.snack.Snack;
+import be.avidoo.ddd.boundedcontext.snackmachine.snack.SnackRepository;
+import be.avidoo.ddd.sharedkernel.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

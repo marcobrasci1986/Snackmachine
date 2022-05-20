@@ -1,4 +1,4 @@
-package be.avidoo.ddd.aggregate;
+package be.avidoo.ddd.common;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

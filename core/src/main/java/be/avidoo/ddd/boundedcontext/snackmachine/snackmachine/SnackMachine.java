@@ -1,7 +1,8 @@
-package be.avidoo.ddd.aggregate.snackmachine;
+package be.avidoo.ddd.boundedcontext.snackmachine.snackmachine;
 
-import be.avidoo.ddd.AbstractAggregateRoot;
-import be.avidoo.ddd.aggregate.Aggregate;
+import be.avidoo.ddd.common.AbstractAggregateRoot;
+import be.avidoo.ddd.sharedkernel.Money;
+import be.avidoo.ddd.common.Aggregate;
 import lombok.Getter;
 
 import javax.persistence.*;

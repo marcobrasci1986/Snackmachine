@@ -1,5 +1,6 @@
-package be.avidoo.ddd.aggregate.snackmachine;
+package be.avidoo.ddd.boundedcontext.snackmachine.snackmachine;
 
+import be.avidoo.ddd.sharedkernel.Money;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
