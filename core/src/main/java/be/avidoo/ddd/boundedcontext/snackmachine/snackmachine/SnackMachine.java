@@ -1,8 +1,8 @@
 package be.avidoo.ddd.boundedcontext.snackmachine.snackmachine;
 
 import be.avidoo.ddd.common.AbstractAggregateRoot;
-import be.avidoo.ddd.sharedkernel.Money;
 import be.avidoo.ddd.common.Aggregate;
+import be.avidoo.ddd.sharedkernel.Money;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Entity
+@Table(name = "Snackmachine")
 @Getter
 @Aggregate
 public class SnackMachine extends AbstractAggregateRoot {
@@ -20,6 +21,7 @@ public class SnackMachine extends AbstractAggregateRoot {
     @Transient
     private double moneyInTransaction;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "fk_snackmachine")
     private List<Slot> slots;
 
     public SnackMachine(long id) {
@@ -32,9 +34,9 @@ public class SnackMachine extends AbstractAggregateRoot {
         this.moneyInTransaction = 0;
         this.slots = new ArrayList<>();
 
-        this.slots.add(new Slot(this, 1));
-        this.slots.add(new Slot(this, 2));
-        this.slots.add(new Slot(this, 3));
+        this.slots.add(new Slot(1));
+        this.slots.add(new Slot(2));
+        this.slots.add(new Slot(3));
     }
 
     public SnackPile getSnackPile(int position) {
@@ -66,7 +68,7 @@ public class SnackMachine extends AbstractAggregateRoot {
             throw new IllegalStateException("Quantity is zero");
         if (this.moneyInTransaction < snackPile.getPrice())
             throw new IllegalStateException("Not enough money inserted");
-        if(! moneyInside.canAllocate(this.moneyInTransaction - snackPile.getPrice()))
+        if (!moneyInside.canAllocate(this.moneyInTransaction - snackPile.getPrice()))
             throw new IllegalStateException("Not enough money in machine for change");
 
         return true;

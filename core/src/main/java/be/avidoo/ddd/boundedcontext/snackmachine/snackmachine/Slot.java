@@ -5,22 +5,22 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Slot")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 class Slot extends AbstractEntity {
 
     @Embedded
     private SnackPile snackPile;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_snackmachine")
-    private SnackMachine snackMachine;
+
     private int position;
 
-    public Slot(SnackMachine snackMachine, int position) {
-        this.snackMachine = snackMachine;
+    public Slot(int position) {
         this.position = position;
         this.snackPile = SnackPile.EMPTY;
     }

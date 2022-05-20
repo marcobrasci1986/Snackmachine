@@ -8,8 +8,10 @@ import lombok.Getter;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "Atm")
 @Getter
 @Aggregate
 public class Atm extends AbstractAggregateRoot {
