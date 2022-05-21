@@ -1,20 +1,20 @@
 package be.avidoo.ddd.boundedcontext.atm;
 
-import be.avidoo.ddd.common.AbstractAggregateRoot;
-import be.avidoo.ddd.common.Aggregate;
+
 import be.avidoo.ddd.sharedkernel.Money;
 import lombok.Getter;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Atm")
 @Getter
-@Aggregate
-public class Atm extends AbstractAggregateRoot {
+public class Atm extends AbstractAggregateRoot<Atm> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
 
     public static final double COMMISSION = 1.01;
     @Embedded
@@ -40,6 +40,8 @@ public class Atm extends AbstractAggregateRoot {
 
             double commission = calculateAmountWithCommission(amount);
             this.moneyCharged = this.moneyCharged + commission;
+
+            registerEvent(new BalanceChangedEvent(this.moneyCharged));
         }
     }
 
@@ -50,4 +52,5 @@ public class Atm extends AbstractAggregateRoot {
     public void loadMoney(Money money) {
         this.moneyInside = this.moneyInside.sum(money);
     }
+
 }

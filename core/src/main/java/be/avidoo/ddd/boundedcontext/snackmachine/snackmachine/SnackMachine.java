@@ -1,7 +1,7 @@
 package be.avidoo.ddd.boundedcontext.snackmachine.snackmachine;
 
-import be.avidoo.ddd.common.AbstractAggregateRoot;
-import be.avidoo.ddd.common.Aggregate;
+
+import be.avidoo.ddd.common.AggregateRoot;
 import be.avidoo.ddd.sharedkernel.Money;
 import lombok.Getter;
 
@@ -13,8 +13,7 @@ import java.util.Optional;
 @Entity
 @Table(name = "Snackmachine")
 @Getter
-@Aggregate
-public class SnackMachine extends AbstractAggregateRoot {
+public class SnackMachine extends AggregateRoot<SnackMachine> {
 
     @Embedded
     private Money moneyInside;
