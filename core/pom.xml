@@ -7,7 +7,6 @@
         <artifactId>snackmachine</artifactId>
         <groupId>be.avidoo.ddd</groupId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <artifactId>core</artifactId>
@@ -44,12 +43,7 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.tngtech.archunit</groupId>-->
-<!--            <artifactId>archunit-junit5</artifactId>-->
-<!--            <version>0.23.1</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
+
     </dependencies>
 
 

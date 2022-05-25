@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  db.pat:
+   container_name: db.snackmachine
+   image: postgis/postgis:13-3.2-alpine
+   ports:
+     - 15006:5432
+   environment:
+     - ADMIN_USER=postgres
+     - ADMIN_PASSWORD=postgres
+     - POSTGRES_USER=snackmachine
+     - POSTGRES_PASSWORD=snackmachine
+     - POSTGRES_DB=snackmachine
