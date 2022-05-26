@@ -1,8 +1,6 @@
 server:
   servlet:
     context-path: /snackmachine
-  netty:
-    h2c-max-content-length:
 
 logging:
   level:

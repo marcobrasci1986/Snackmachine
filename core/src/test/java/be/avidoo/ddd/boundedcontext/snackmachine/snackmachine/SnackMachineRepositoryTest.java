@@ -1,22 +1,18 @@
 package be.avidoo.ddd.boundedcontext.snackmachine.snackmachine;
 
+import be.avidoo.ddd.boundedcontext.AbstractItTest;
 import be.avidoo.ddd.boundedcontext.snackmachine.snack.Snack;
 import be.avidoo.ddd.boundedcontext.snackmachine.snack.SnackRepository;
 import be.avidoo.ddd.sharedkernel.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = SnackMachineTestConfiguration.class)
-class SnackMachineRepositoryTest {
+class SnackMachineRepositoryTest extends AbstractItTest {
 
     @Autowired
     private SnackMachineRepository snackMachineRepository;
