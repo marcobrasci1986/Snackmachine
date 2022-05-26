@@ -1,6 +1,6 @@
 package be.avidoo.ddd.boundedcontext.snackmachine.snackmachine;
 
-import be.avidoo.ddd.boundedcontext.AbstractItTest;
+import be.avidoo.ddd.boundedcontext.AbstractDataJpaTest;
 import be.avidoo.ddd.boundedcontext.snackmachine.snack.Snack;
 import be.avidoo.ddd.boundedcontext.snackmachine.snack.SnackRepository;
 import be.avidoo.ddd.sharedkernel.Money;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SnackMachineRepositoryTest extends AbstractItTest {
+class SnackMachineRepositoryTest extends AbstractDataJpaTest {
 
     @Autowired
     private SnackMachineRepository snackMachineRepository;
@@ -26,7 +26,7 @@ class SnackMachineRepositoryTest extends AbstractItTest {
         snackRepository.save(Snack.GUM);
         snackRepository.save(Snack.SODA);
 
-        SnackMachine snackMachine = new SnackMachine(1);
+        SnackMachine snackMachine = new SnackMachine(1L);
         snackMachine.loadSnack(1, new SnackPile(Snack.CHOCOLATE, 10, 1.5));
         snackMachine.loadSnack(2, new SnackPile(Snack.GUM, 10, 1.5));
         snackMachine.loadSnack(3, new SnackPile(Snack.SODA, 10, 1.5));
@@ -36,7 +36,7 @@ class SnackMachineRepositoryTest extends AbstractItTest {
 
     @Test
     void findById() {
-        Optional<SnackMachine> optionalSnackMachine = snackMachineRepository.findById(1L);
+        Optional<SnackMachine> optionalSnackMachine = snackMachineRepository.findAll().stream().findFirst();
 
         assertThat(optionalSnackMachine).isPresent();
 
@@ -44,15 +44,15 @@ class SnackMachineRepositoryTest extends AbstractItTest {
             assertThat(snackMachine.getId()).isNotNull();
             assertThat(snackMachine.getSlots().size()).isEqualTo(3);
 
-            assertThat(snackMachine.getSnackPile(1).getSnack()).isEqualTo(Snack.CHOCOLATE);
-            assertThat(snackMachine.getSnackPile(2).getSnack()).isEqualTo(Snack.GUM);
-            assertThat(snackMachine.getSnackPile(3).getSnack()).isEqualTo(Snack.SODA);
+            assertThat(snackMachine.getSnackPile(1).getSnack().getName()).isEqualTo(Snack.CHOCOLATE.getName());
+            assertThat(snackMachine.getSnackPile(2).getSnack().getName()).isEqualTo(Snack.GUM.getName());
+            assertThat(snackMachine.getSnackPile(3).getSnack().getName()).isEqualTo(Snack.SODA.getName());
         });
     }
 
     @Test
     void buySnack() {
-        Optional<SnackMachine> optionalSnackMachine = snackMachineRepository.findById(1L);
+        Optional<SnackMachine> optionalSnackMachine = snackMachineRepository.findAll().stream().findFirst();
 
         assertThat(optionalSnackMachine).isPresent();
 

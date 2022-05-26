@@ -1,6 +1,6 @@
 package be.avidoo.ddd.boundedcontext.snackmachine.snack;
 
-import be.avidoo.ddd.boundedcontext.AbstractItTest;
+import be.avidoo.ddd.boundedcontext.AbstractDataJpaTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -8,7 +8,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class SnackRepositoryTest extends AbstractItTest {
+class SnackRepositoryTest extends AbstractDataJpaTest {
 
     @Autowired
     private SnackRepository snackRepository;
