@@ -6,8 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -18,8 +17,13 @@ public class Employee extends AbstractEntity {
 
     private String name;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
+
     @Builder
-    public Employee(String name) {
+    public Employee(String name, Department department) {
         this.name = name;
+        this.department = department;
     }
 }

@@ -17,8 +17,8 @@ public class Department extends AbstractEntity {
 
     @Column(name = "description")
     private String description;
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id")
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department")
     private List<Employee> employees;
 
     @Builder
